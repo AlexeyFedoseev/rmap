@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>karta_rossii.jpg</file>
+    </qresource>
+</RCC>
