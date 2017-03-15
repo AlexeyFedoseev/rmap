@@ -7,7 +7,7 @@
 #include <QMouseEvent>
 #include <QGraphicsPixmapItem>
 
-City::City(QWidget *parent) :
+City::City(int x, int y, QWidget *parent) :
     QDialog(parent)
 {
     Ui::Dialog ui;
@@ -19,9 +19,18 @@ City::City(QWidget *parent) :
     QGraphicsPixmapItem* item = new QGraphicsPixmapItem(QPixmap::fromImage(image));
     scene->addItem(item);
     //uiC->centralWidget->layout()->addWidget(view);
+
+    rect = QRect(x-30, y-30, 60, 60);
 }
+
+
 
 City::~City()
 {
     //delete uiC;
+}
+
+bool City::checkPoint(QPoint p)
+{
+    return rect.contains(p);
 }

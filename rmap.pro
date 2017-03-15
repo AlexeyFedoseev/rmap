@@ -15,11 +15,11 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     city.cpp \
-    scene.cpp
+    graphicspixmapitem.cpp
 
 HEADERS  += mainwindow.h \
     city.h \
-    scene.h
+    graphicspixmapitem.h
 
 FORMS    += mainwindow.ui \
     city.ui

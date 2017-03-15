@@ -1,14 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "city.h"
-#include "scene.h"
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QImage>
 #include <QDebug>
 #include <QMouseEvent>
-#include "scene.h"
+#include <QGraphicsSceneMouseEvent>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -17,28 +16,31 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     QImage image(":/karta_rossii.jpg");
     QGraphicsScene* scene = new QGraphicsScene;
-    Scene* view = new Scene(scene);
-    QGraphicsPixmapItem* item = new QGraphicsPixmapItem(QPixmap::fromImage(image));
-    scene->addItem(item);
-    //view->show();
+    QGraphicsView* view = new QGraphicsView(scene);
+    graphicsItem = new GraphicsPixmapItem(QPixmap::fromImage(image));
+    connect(graphicsItem, SIGNAL(pointClicked(QPoint)), this, SLOT(openCityWindow(QPoint)));
+    scene->addItem(graphicsItem);
     ui->centralWidget->layout()->addWidget(view);
+
+    City* spb = new City(372, 627);
+    cities.push_back(spb);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    for (QVector<City*>::iterator it = cities.begin(); it!=cities.end(); it++) {
+        delete *it;
+    }
 }
 
-void MainWindow::mousePressEvent(QMouseEvent *event)
-{
-    //Scene s;
-    //s.mousePressEvent(event);
-}
 
-void MainWindow::openCityWindow(QMouseEvent *event)
+void MainWindow::openCityWindow(QPoint p)
 {
-    City c;
-    if(event->x() <= 391 && event->x() >= 375 && event->y() <= 658 && event->y() >= 645){
-        c.show();
+    for (QVector<City*>::iterator it = cities.begin(); it!=cities.end(); it++) {
+        if ((*it)->checkPoint(p)) {
+            (*it)->show();
+            break;
+        }
     }
 }

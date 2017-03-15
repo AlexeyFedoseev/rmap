@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "graphicspixmapitem.h"
+#include "city.h"
 
 namespace Ui {
 class MainWindow;
@@ -14,11 +16,13 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void mousePressEvent(QMouseEvent *event);
-    void openCityWindow(QMouseEvent *event);
+public slots:
+    void openCityWindow(QPoint p);
 
 private:
     Ui::MainWindow *ui;
+    GraphicsPixmapItem* graphicsItem;
+    QVector<City*> cities;
 };
 
 #endif // MAINWINDOW_H
