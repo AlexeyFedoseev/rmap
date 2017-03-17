@@ -6,8 +6,9 @@
 #include <QDebug>
 #include <QMouseEvent>
 #include <QGraphicsPixmapItem>
+#include <QTextBrowser>
 
-City::City(int x, int y, QWidget *parent) :
+City::City(int x, int y, unsigned int cityId, QWidget *parent) :
     QDialog(parent)
 {
     Ui::Dialog ui;
@@ -21,6 +22,15 @@ City::City(int x, int y, QWidget *parent) :
     //uiC->centralWidget->layout()->addWidget(view);
 
     rect = QRect(x-30, y-30, 60, 60);
+
+    //id = cityId;
+    switch(cityId) {
+        case 0:
+        {
+            cityName.append("Санкт-Петербург");
+            break;
+        }
+    }
 }
 
 
