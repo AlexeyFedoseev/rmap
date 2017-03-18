@@ -8,6 +8,8 @@
 #include <QDebug>
 #include <QMouseEvent>
 #include <QGraphicsSceneMouseEvent>
+#include <QString>
+#include <QFile>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -22,7 +24,9 @@ MainWindow::MainWindow(QWidget *parent) :
     scene->addItem(graphicsItem);
     ui->centralWidget->layout()->addWidget(view);
 
-    City* spb = new City(372, 627);
+    QFile file("questions.txt");
+    QString cityName = file.read(file.find("N"));
+    City* spb = new City(372, 627, "Санкт-Петербург");
     cities.push_back(spb);
 }
 
