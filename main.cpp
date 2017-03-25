@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "city.h"
 #include <QApplication>
+#include <QTextCodec>
 
 int main(int argc, char *argv[])
 {
