@@ -3,18 +3,19 @@
 
 #include <QObject>
 #include <QString>
+#include <QVector>
 
-class Question : public QObject
+class Question
 {
-    Q_OBJECT
 
 public:
     QString questionText;
-    Question(QObject *parent = 0);
+    Question(QString text);
+    Question();
     ~Question();
-
-private:
-    QVector<QString*> answers;
+    void addAnswer(QString text, bool correct);
+    QVector<QString> answers;
+    int rightIndex;
 };
 
 #endif // QUESTION_H

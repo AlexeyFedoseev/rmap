@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "city.h"
+#include "question.h"
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -25,10 +26,37 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->centralWidget->layout()->addWidget(view);
 
     QFile file("questions.txt");
-    file.open(QIODevice::ReadOnly);
-    QString cityName = file.read(27);
-    City* spb = new City(372, 627, cityName);
-    cities.push_back(spb);
+    if (file.open(QIODevice::ReadOnly))
+    {
+       QTextStream in(&file);
+       while (!in.atEnd())
+       {
+          QString line = in.readLine();
+          if (line.startsWith("N ")){
+              QString cityName = line.right(line.length() - 2);
+              line = in.readLine();
+              int x = line.right(line.length() - 2).toInt();
+              line = in.readLine();
+              int y = line.right(line.length() - 2).toInt();
+              QVector<Question> questions;
+              line = in.readLine();
+              while (line.startsWith("Q ")) {
+                  QString questionString = line.right(line.length() - 2);
+                  Question q(questionString);
+                  line = in.readLine();
+                  while (line.startsWith("A ") || line.startsWith("R ")) {
+                      QString answer = line.right(line.length() - 2);
+                      q.addAnswer(answer, line.startsWith("R "));
+                      line = in.readLine();
+                  }
+                  questions.push_back(q);
+              }
+              City* spb = new City(x, y, cityName, questions);
+              cities.push_back(spb);
+          }
+       }
+       file.close();
+    }
 }
 
 MainWindow::~MainWindow()
