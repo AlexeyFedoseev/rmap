@@ -1,12 +1,14 @@
 #include "city.h"
 #include "ui_city.h"
 #include "question.h"
+#include "answerwindow.h"
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QImage>
 #include <QDebug>
 #include <QMouseEvent>
 #include <QGraphicsPixmapItem>
+#include <QPushButton>
 
 City::City(int x, int y, QString name, const QVector<Question> &questions, QWidget *parent) :
     QDialog(parent), questions(questions)
@@ -39,9 +41,10 @@ City::City(int x, int y, QString name, const QVector<Question> &questions, QWidg
         checkId = 3;
     }
 
-    if(questions[0].rightIndex == checkId) {
+    QPushButton* okButton = new QPushButton;
+    AnswerWindow* aw = new AnswerWindow;
+    connect(okButton, SIGNAL(clicked()), aw, SLOT(aw.preShow(questions[0].rightIndex, checkId)));
 
-    }
     for (int i = 0; i<questions.size(); i++){
         qDebug() << questions[i].answers;
     }

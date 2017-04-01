@@ -16,18 +16,23 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     city.cpp \
     graphicspixmapitem.cpp \
-    question.cpp
+    question.cpp \
+    answerwindow.cpp
 
 HEADERS  += mainwindow.h \
     city.h \
     graphicspixmapitem.h \
-    question.h
+    question.h \
+    answerwindow.h
 
 FORMS    += mainwindow.ui \
-    city.ui
+    city.ui \
+    answerwindow.ui
 
 RESOURCES += \
     resource.qrc
 
 DISTFILES += \
-    SUx182.jpeg
+    SUx182.jpeg \
+    krest.jpg \
+    galochka.png

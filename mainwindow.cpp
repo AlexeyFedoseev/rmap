@@ -51,8 +51,8 @@ MainWindow::MainWindow(QWidget *parent) :
                   }
                   questions.push_back(q);
               }
-              City* spb = new City(x, y, cityName, questions);
-              cities.push_back(spb);
+              City* c = new City(x, y, cityName, questions);
+              cities.push_back(c);
           }
        }
        file.close();
