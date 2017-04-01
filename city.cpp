@@ -11,39 +11,25 @@
 #include <QPushButton>
 
 City::City(int x, int y, QString name, const QVector<Question> &questions, QWidget *parent) :
-    QDialog(parent), questions(questions)
+    QDialog(parent), questions(questions), ui(new Ui::Dialog)
 {
-    Ui::Dialog ui;
-    ui.setupUi(this);
+    //Ui::Dialog ui;
+    ui->setupUi(this);
     QImage image(":/SUx182.jpg");
     QGraphicsScene* scene = new QGraphicsScene;
     QGraphicsPixmapItem* item = new QGraphicsPixmapItem(QPixmap::fromImage(image));
     scene->addItem(item);
-    rect = QRect(x-30, y-30, 60, 60);
+    rect = QRect(x-10, y-10, 20, 20);
 
-    ui.label->setText(name);
-    ui.label_2->setText(questions[0].questionText);
-    int checkId;
-    ui.radioButton->setText(questions[0].answers[0]);
-    if(ui.radioButton->isChecked()){
-        checkId = 0;
-    }
-    ui.radioButton_2->setText(questions[0].answers[1]);
-    if(ui.radioButton_2->isChecked()){
-        checkId = 1;
-    }
-    ui.radioButton_3->setText(questions[0].answers[2]);
-    if(ui.radioButton_3->isChecked()){
-        checkId = 2;
-    }
-    ui.radioButton_4->setText(questions[0].answers[3]);
-    if(ui.radioButton_4->isChecked()){
-        checkId = 3;
-    }
+    ui->cityName->setText(name);
+    ui->quest->setText(questions[questionNumber].questionText);
+    ui->var1->setText(questions[questionNumber].answers[0]);
+    ui->var2->setText(questions[questionNumber].answers[1]);
+    ui->var3->setText(questions[questionNumber].answers[2]);
+    ui->var4->setText(questions[questionNumber].answers[3]);
 
-    QPushButton* okButton = new QPushButton;
-    AnswerWindow* aw = new AnswerWindow;
-    connect(okButton, SIGNAL(clicked()), aw, SLOT(aw.preShow(questions[0].rightIndex, checkId)));
+    aw = new AnswerWindow(this);
+    connect(ui->okButton, SIGNAL(clicked()), this, SLOT(showAnswer()));
 
     for (int i = 0; i<questions.size(); i++){
         qDebug() << questions[i].answers;
@@ -54,10 +40,39 @@ City::City(int x, int y, QString name, const QVector<Question> &questions, QWidg
 
 City::~City()
 {
-    //delete uiC;
+    delete aw;
 }
 
 bool City::checkPoint(QPoint p)
 {
     return rect.contains(p);
+}
+
+void City::showAnswer()
+{
+    int checkId = 5;
+    if(ui->var1->isChecked()){
+        checkId = 0;
+    }
+    if(ui->var2->isChecked()){
+        checkId = 1;
+    }
+    if(ui->var3->isChecked()){
+        checkId = 2;
+    }
+    if(ui->var4->isChecked()){
+        checkId = 3;
+    }
+    aw->preShow(questions[questionNumber].rightIndex, checkId);
+}
+
+void City::nextQuestion()
+{
+    aw->hide();
+    questionNumber++;
+    ui->quest->setText(questions[questionNumber].questionText);
+    ui->var1->setText(questions[questionNumber].answers[0]);
+    ui->var2->setText(questions[questionNumber].answers[1]);
+    ui->var3->setText(questions[questionNumber].answers[2]);
+    ui->var4->setText(questions[questionNumber].answers[3]);
 }

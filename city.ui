@@ -19,20 +19,20 @@
      <x>16</x>
      <y>12</y>
      <width>611</width>
-     <height>192</height>
+     <height>201</height>
     </rect>
    </property>
    <property name="cursor" stdset="0">
     <cursorShape>ArrowCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="cityName">
    <property name="geometry">
     <rect>
-     <x>236</x>
-     <y>210</y>
+     <x>230</x>
+     <y>230</y>
      <width>211</width>
-     <height>51</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -50,28 +50,28 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QRadioButton" name="radioButton">
+     <widget class="QRadioButton" name="var1">
       <property name="text">
        <string>Вариант ответа 1</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QRadioButton" name="radioButton_2">
+     <widget class="QRadioButton" name="var2">
       <property name="text">
        <string>Вариант ответа 2</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QRadioButton" name="radioButton_3">
+     <widget class="QRadioButton" name="var3">
       <property name="text">
        <string>Вариант ответа 3</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QRadioButton" name="radioButton_4">
+     <widget class="QRadioButton" name="var4">
       <property name="text">
        <string>Вариант ответа 4</string>
       </property>
@@ -79,12 +79,12 @@
     </item>
    </layout>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="quest">
    <property name="geometry">
     <rect>
      <x>36</x>
      <y>268</y>
-     <width>591</width>
+     <width>561</width>
      <height>41</height>
     </rect>
    </property>
@@ -92,7 +92,7 @@
     <string>TextLabel</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="okButton">
    <property name="geometry">
     <rect>
      <x>254</x>

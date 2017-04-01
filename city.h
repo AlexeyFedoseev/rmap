@@ -5,10 +5,14 @@
 #include <QDialog>
 #include <QRect>
 #include <QPoint>
+#include "answerwindow.h"
 
-namespace CityN {
+namespace Ui {
 class City;
+class Dialog;
 }
+
+class AnswerWindow;
 
 class City : public QDialog
 {
@@ -18,11 +22,16 @@ public:
     City(int x, int y, QString name, const QVector<Question>& questions, QWidget *parent = 0);
     ~City();
     bool checkPoint(QPoint p);
+public slots:
+    void showAnswer();
+    void nextQuestion();
 
 private:
-    CityN::City *uiC;
+    int questionNumber = 0;
+    Ui::Dialog *ui;
     QRect rect;
     QVector<Question> questions;
+    AnswerWindow* aw;
 };
 
 #endif // CITY_H

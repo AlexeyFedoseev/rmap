@@ -1,18 +1,27 @@
 #ifndef ANSWERWINDOW_H
 #define ANSWERWINDOW_H
 
-#include <QObject>
+#include <QWidget>
 #include <QString>
-#include <QVector>
+#include "city.h"
 
-class AnswerWindow : public QObject
+namespace Ui {
+class answerwindow;
+}
+
+class City;
+
+class AnswerWindow : public QWidget
 {
     Q_OBJECT
-
+    Ui::answerwindow *ui;
 public:
-    AnswerWindow();
+    AnswerWindow(City *city);
     ~AnswerWindow();
-    preShow(int rightIndex, int checkId);
+    void preShow(int rightIndex, int checkId);
+public slots:
+    void exitToMap();
+   // void nextQuestion();
 };
 
 #endif // ANSWERWINDOW_H

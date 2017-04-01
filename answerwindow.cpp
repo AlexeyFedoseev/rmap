@@ -1,11 +1,13 @@
 #include "answerwindow.h"
+#include "city.h"
 #include "ui_answerwindow.h"
-#include <QObject>
+#include <QWidget>
 
-AnswerWindow::AnswerWindow()
+AnswerWindow::AnswerWindow(City* city) : ui(new Ui::answerwindow)
 {
-    Ui::Dialog ui;
-    ui.setupUi(this);
+    ui->setupUi(this);
+    //connect(ui->exitButton, SIGNAL(clicked()), this, SLOT(exitToMap()));
+    connect(ui->nextButton, SIGNAL(clicked()), city, SLOT(nextQuestion()));
 }
 
 AnswerWindow::~AnswerWindow()
@@ -13,16 +15,21 @@ AnswerWindow::~AnswerWindow()
 
 }
 
-AnswerWindow::preShow(int rightIndex, int checkId)
+void AnswerWindow::preShow(int rightIndex, int checkId)
 {
     if(rightIndex == checkId){
-        QImage image("galochka.png");
-        ui.label->setText("Ты ответил на вопрос правильно");
+        QImage image(":/galochka.png");
+        ui->label->setText("Ты ответил на вопрос правильно");
 
     }
     else {
-        QImage image("krest.jpg");
-        ui.label->setText("Ты ответил на вопрос неправильно");
+        QImage image(":/krest.jpg");
+        ui->label->setText("Ты ответил на вопрос неправильно");
     }
-    ui.show();
+    show();
+}
+
+void AnswerWindow::exitToMap()
+{
+
 }

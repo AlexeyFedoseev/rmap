@@ -10,12 +10,13 @@ class Question
 
 public:
     QString questionText;
-    Question(QString text);
-    Question();
-    ~Question();
-    void addAnswer(QString text, bool correct);
     QVector<QString> answers;
     int rightIndex;
+
+    Question();
+    Question(QString text);
+    ~Question();
+    void addAnswer(QString text, bool correct);
 };
 
 #endif // QUESTION_H
