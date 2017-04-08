@@ -2,6 +2,7 @@
 #include "ui_city.h"
 #include "question.h"
 #include "answerwindow.h"
+#include "endquestions.h"
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QImage>
@@ -28,6 +29,7 @@ City::City(int x, int y, QString name, const QVector<Question> &questions, QWidg
     ui->var3->setText(questions[questionNumber].answers[2]);
     ui->var4->setText(questions[questionNumber].answers[3]);
 
+    eq = new EndQuestions(this);
     aw = new AnswerWindow(this);
     connect(ui->okButton, SIGNAL(clicked()), this, SLOT(showAnswer()));
 
@@ -70,9 +72,22 @@ void City::nextQuestion()
 {
     aw->hide();
     questionNumber++;
-    ui->quest->setText(questions[questionNumber].questionText);
-    ui->var1->setText(questions[questionNumber].answers[0]);
-    ui->var2->setText(questions[questionNumber].answers[1]);
-    ui->var3->setText(questions[questionNumber].answers[2]);
-    ui->var4->setText(questions[questionNumber].answers[3]);
+    if(questionNumber < questions.size()){
+        ui->quest->setText(questions[questionNumber].questionText);
+        ui->var1->setText(questions[questionNumber].answers[0]);
+        ui->var2->setText(questions[questionNumber].answers[1]);
+        ui->var3->setText(questions[questionNumber].answers[2]);
+        ui->var4->setText(questions[questionNumber].answers[3]);
+    }
+    else{
+        complete = true;
+        eq->show();
+        hide();
+    }
+}
+
+void City::exitToMap()
+{
+    questionNumber++;
+    hide();
 }

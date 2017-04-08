@@ -71,9 +71,14 @@ MainWindow::~MainWindow()
 void MainWindow::openCityWindow(QPoint p)
 {
     for (QVector<City*>::iterator it = cities.begin(); it!=cities.end(); it++) {
-        if ((*it)->checkPoint(p)) {
-            (*it)->show();
-            break;
+        if ((*it)->checkPoint(p)){
+            if((*it)->complete != true){
+                (*it)->show();
+                break;
+            }
+            else{
+                (*it)->eq->show();
+            }
         }
     }
 }

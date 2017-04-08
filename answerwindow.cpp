@@ -6,7 +6,8 @@
 AnswerWindow::AnswerWindow(City* city) : ui(new Ui::answerwindow)
 {
     ui->setupUi(this);
-    //connect(ui->exitButton, SIGNAL(clicked()), this, SLOT(exitToMap()));
+    connect(ui->exitButton, SIGNAL(clicked()), city, SLOT(exitToMap()));
+    connect(ui->exitButton, SIGNAL(clicked()), this, SLOT(hide()));
     connect(ui->nextButton, SIGNAL(clicked()), city, SLOT(nextQuestion()));
 }
 
@@ -27,9 +28,4 @@ void AnswerWindow::preShow(int rightIndex, int checkId)
         ui->label->setText("Ты ответил на вопрос неправильно");
     }
     show();
-}
-
-void AnswerWindow::exitToMap()
-{
-
 }

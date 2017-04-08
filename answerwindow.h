@@ -19,9 +19,6 @@ public:
     AnswerWindow(City *city);
     ~AnswerWindow();
     void preShow(int rightIndex, int checkId);
-public slots:
-    void exitToMap();
-   // void nextQuestion();
 };
 
 #endif // ANSWERWINDOW_H

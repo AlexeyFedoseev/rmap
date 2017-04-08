@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>karta_rossii.jpg</file>
+        <file>galochka.JPG</file>
+        <file>krest.jpg</file>
     </qresource>
 </RCC>
