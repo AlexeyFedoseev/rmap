@@ -10,13 +10,15 @@ class EndQuestions;
 }
 
 class City;
+class MainWindow;
+
 
 class EndQuestions : public QWidget
 {
     Q_OBJECT
     Ui::EndQuestions *ui;
 public:
-    EndQuestions(City* city);
+    EndQuestions(City* city, MainWindow* mw);
     ~EndQuestions();
 };
 

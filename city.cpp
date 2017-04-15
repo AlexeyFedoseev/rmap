@@ -3,6 +3,7 @@
 #include "question.h"
 #include "answerwindow.h"
 #include "endquestions.h"
+#include "mainwindow.h"
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QImage>
@@ -11,7 +12,7 @@
 #include <QGraphicsPixmapItem>
 #include <QPushButton>
 
-City::City(int x, int y, QString name, const QVector<Question> &questions, QWidget *parent) :
+City::City(int x, int y, QString name, const QVector<Question> &questions, MainWindow* m, QWidget *parent) :
     QDialog(parent), questions(questions), ui(new Ui::Dialog)
 {
     //Ui::Dialog ui;
@@ -23,14 +24,10 @@ City::City(int x, int y, QString name, const QVector<Question> &questions, QWidg
     rect = QRect(x-10, y-10, 20, 20);
 
     ui->cityName->setText(name);
-    ui->quest->setText(questions[questionNumber].questionText);
-    ui->var1->setText(questions[questionNumber].answers[0]);
-    ui->var2->setText(questions[questionNumber].answers[1]);
-    ui->var3->setText(questions[questionNumber].answers[2]);
-    ui->var4->setText(questions[questionNumber].answers[3]);
+    changeText();
 
-    eq = new EndQuestions(this);
-    aw = new AnswerWindow(this);
+    eq = new EndQuestions(this, m);
+    aw = new AnswerWindow(this, m);
     connect(ui->okButton, SIGNAL(clicked()), this, SLOT(showAnswer()));
 
     for (int i = 0; i<questions.size(); i++){
@@ -66,18 +63,32 @@ void City::showAnswer()
         checkId = 3;
     }
     aw->preShow(questions[questionNumber].rightIndex, checkId);
+    hide();
 }
 
 void City::nextQuestion()
 {
+    show();
+    ui->var1->setAutoExclusive(false);
+    ui->var1->setChecked(false);
+    ui->var1->setAutoExclusive(true);
+
+    ui->var2->setAutoExclusive(false);
+    ui->var2->setChecked(false);
+    ui->var2->setAutoExclusive(true);
+
+    ui->var3->setAutoExclusive(false);
+    ui->var3->setChecked(false);
+    ui->var3->setAutoExclusive(true);
+
+    ui->var4->setAutoExclusive(false);
+    ui->var4->setChecked(false);
+    ui->var4->setAutoExclusive(true);
+
     aw->hide();
     questionNumber++;
     if(questionNumber < questions.size()){
-        ui->quest->setText(questions[questionNumber].questionText);
-        ui->var1->setText(questions[questionNumber].answers[0]);
-        ui->var2->setText(questions[questionNumber].answers[1]);
-        ui->var3->setText(questions[questionNumber].answers[2]);
-        ui->var4->setText(questions[questionNumber].answers[3]);
+        changeText();
     }
     else{
         complete = true;
@@ -90,4 +101,28 @@ void City::exitToMap()
 {
     questionNumber++;
     hide();
+    if(questionNumber < questions.size()){
+        changeText();
+    }
+    else{
+        complete = true;
+    }
+}
+
+void City::restartQuestions()
+{
+    eq->hide();
+    complete = false;
+    questionNumber = 0;
+    changeText();
+    show();
+}
+
+void City::changeText()
+{
+    ui->quest->setText(questions[questionNumber].questionText);
+    ui->var1->setText(questions[questionNumber].answers[0]);
+    ui->var2->setText(questions[questionNumber].answers[1]);
+    ui->var3->setText(questions[questionNumber].answers[2]);
+    ui->var4->setText(questions[questionNumber].answers[3]);
 }

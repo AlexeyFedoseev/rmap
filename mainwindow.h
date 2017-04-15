@@ -9,6 +9,8 @@ namespace Ui {
 class MainWindow;
 }
 
+class City;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT

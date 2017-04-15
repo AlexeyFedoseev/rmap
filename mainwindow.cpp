@@ -51,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
                   }
                   questions.push_back(q);
               }
-              City* c = new City(x, y, cityName, questions);
+              City* c = new City(x, y, cityName, questions, this);
               cities.push_back(c);
           }
        }
@@ -74,10 +74,13 @@ void MainWindow::openCityWindow(QPoint p)
         if ((*it)->checkPoint(p)){
             if((*it)->complete != true){
                 (*it)->show();
+                hide();
                 break;
             }
             else{
                 (*it)->eq->show();
+                hide();
+                break;
             }
         }
     }

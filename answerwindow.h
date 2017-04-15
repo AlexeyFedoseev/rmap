@@ -4,19 +4,21 @@
 #include <QWidget>
 #include <QString>
 #include "city.h"
+#include "mainwindow.h"
 
 namespace Ui {
 class answerwindow;
 }
 
 class City;
+class MainWindow;
 
 class AnswerWindow : public QWidget
 {
     Q_OBJECT
     Ui::answerwindow *ui;
 public:
-    AnswerWindow(City *city);
+    AnswerWindow(City *city, MainWindow* mw);
     ~AnswerWindow();
     void preShow(int rightIndex, int checkId);
 };
