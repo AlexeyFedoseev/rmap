@@ -31,12 +31,12 @@ void AnswerWindow::preShow(int rightIndex, int checkId)
 
     }
     else {
-        QImage image(":/krest.jpg");
+        QImage image(":/krest.png");
         QGraphicsScene* scene = new QGraphicsScene();
         QGraphicsPixmapItem* item = new QGraphicsPixmapItem(QPixmap::fromImage(image));
         scene->addItem(item);
         ui->graphicsView->setScene(scene);
-        //ui->imageLabel->setPixmap(":/krest.jpg");
+        //ui->imageLabel->setPixmap(":/krest.png");
         ui->label->setText("Ты ответил на вопрос неправильно");
     }
     show();
