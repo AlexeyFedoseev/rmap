@@ -25,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent) :
     scene->addItem(graphicsItem);
     ui->centralWidget->layout()->addWidget(view);
 
+
+
     QFile file("questions.txt");
     if (file.open(QIODevice::ReadOnly))
     {
@@ -83,5 +85,12 @@ void MainWindow::openCityWindow(QPoint p)
                 break;
             }
         }
+    }
+}
+
+void MainWindow::restartAllQuestions()
+{
+    for (QVector<City*>::iterator it = cities.begin(); it!=cities.end(); it++) {
+        (*it)->restartQuestions();
     }
 }

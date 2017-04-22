@@ -31,7 +31,7 @@ void AnswerWindow::preShow(int rightIndex, int checkId)
 
     }
     else {
-        QImage image(":/krest.jpg");
+        QImage image(":/krest.PNG");
         QGraphicsScene* scene = new QGraphicsScene();
         QGraphicsPixmapItem* item = new QGraphicsPixmapItem(QPixmap::fromImage(image));
         scene->addItem(item);
