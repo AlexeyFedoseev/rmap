@@ -36,4 +36,5 @@ RESOURCES += \
     resource.qrc
 
 DISTFILES += \
-    SUx182.jpeg
+    SUx182.jpeg \
+    krest.PNG

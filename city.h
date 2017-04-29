@@ -37,6 +37,7 @@ public slots:
     void restartQuestions();
 
 private:
+    void uncheckButtons();
     void changeText();
     int questionNumber = 0;
     Ui::Dialog *ui;

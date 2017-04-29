@@ -22,6 +22,8 @@ public slots:
     void openCityWindow(QPoint p);
 
 private:
+    void restartAllQuestions();
+    QMenu *mainMenu;
     Ui::MainWindow *ui;
     GraphicsPixmapItem* graphicsItem;
     QVector<City*> cities;

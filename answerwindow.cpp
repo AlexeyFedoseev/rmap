@@ -31,7 +31,11 @@ void AnswerWindow::preShow(int rightIndex, int checkId)
 
     }
     else {
+<<<<<<< HEAD
         QImage image(":/krest.png");
+=======
+        QImage image(":/krest.PNG");
+>>>>>>> origin/master
         QGraphicsScene* scene = new QGraphicsScene();
         QGraphicsPixmapItem* item = new QGraphicsPixmapItem(QPixmap::fromImage(image));
         scene->addItem(item);

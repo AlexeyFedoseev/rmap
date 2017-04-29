@@ -2,6 +2,10 @@
     <qresource prefix="/">
         <file>karta_rossii.jpg</file>
         <file>galochka.png</file>
+<<<<<<< HEAD
         <file>krest.png</file>
+=======
+        <file>krest.PNG</file>
+>>>>>>> origin/master
     </qresource>
 </RCC>

@@ -15,7 +15,6 @@
 City::City(int x, int y, QString name, const QVector<Question> &questions, MainWindow* m, QWidget *parent) :
     QDialog(parent), questions(questions), ui(new Ui::Dialog)
 {
-    //Ui::Dialog ui;
     ui->setupUi(this);
     QImage image(":/SUx182.jpg");
     QGraphicsScene* scene = new QGraphicsScene;
@@ -69,22 +68,7 @@ void City::showAnswer()
 void City::nextQuestion()
 {
     show();
-    ui->var1->setAutoExclusive(false);
-    ui->var1->setChecked(false);
-    ui->var1->setAutoExclusive(true);
-
-    ui->var2->setAutoExclusive(false);
-    ui->var2->setChecked(false);
-    ui->var2->setAutoExclusive(true);
-
-    ui->var3->setAutoExclusive(false);
-    ui->var3->setChecked(false);
-    ui->var3->setAutoExclusive(true);
-
-    ui->var4->setAutoExclusive(false);
-    ui->var4->setChecked(false);
-    ui->var4->setAutoExclusive(true);
-
+    uncheckButtons();
     aw->hide();
     questionNumber++;
     if(questionNumber < questions.size()){
@@ -116,6 +100,25 @@ void City::restartQuestions()
     questionNumber = 0;
     changeText();
     show();
+}
+
+void City::uncheckButtons()
+{
+    ui->var1->setAutoExclusive(false);
+    ui->var1->setChecked(false);
+    ui->var1->setAutoExclusive(true);
+
+    ui->var2->setAutoExclusive(false);
+    ui->var2->setChecked(false);
+    ui->var2->setAutoExclusive(true);
+
+    ui->var3->setAutoExclusive(false);
+    ui->var3->setChecked(false);
+    ui->var3->setAutoExclusive(true);
+
+    ui->var4->setAutoExclusive(false);
+    ui->var4->setChecked(false);
+    ui->var4->setAutoExclusive(true);
 }
 
 void City::changeText()
